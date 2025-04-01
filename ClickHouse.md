@@ -25,28 +25,28 @@ b、配置集群
 c、创建本地表和分布式表，并插入数据  
   以创建分布式表语句为例  
 创建各机器的本地表：  
-'''CREATE TABLE default.test_table_local ON CLUSTER ck_cluster  
+```CREATE TABLE default.test_table_local ON CLUSTER ck_cluster  
 (
-    `id`        UInt64 ,
-    `name`         String,
-    `create_time`    Datetime,  
+    `id`        UInt64 ,  
+    `name`         String,  
+    `create_time`    Datetime,   
 ) ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/test_table_local', '{replica}')  
 partition by toYYYYMMDD(create_time)  
 primary key(id)  
-order by (id,name);  '''
+order by (id,name);```
 创建分布式表：  <br>
-'''CREATE TABLE test_table_all on cluster ck_cluster(  
+```CREATE TABLE test_table_all on cluster ck_cluster(  
     `id`        UInt64 ,
     `name`         String,
     `create_time`    Datetime  
-)ENGINE=Distributed(ck_cluster, default, test_table_local, hiveHash(id));  '''
+)ENGINE=Distributed(ck_cluster, default, test_table_local, hiveHash(id));  ```
 
 
 在/etc/clickhouse-server/config.d/metrika.xml的配置中，通常会配置两个宏  
-`<macros>  
+```<macros>  
         <shard>02</shard>  
         <replica>replica_208</replica>  
-</macros>  `
+</macros> ```
 是在创建本地表时使用的，用来标注本节点表格代表的第几个分片的第几个副本。  
 副本的地址在zookeeper中可以看到，路径为  
  /clickhouse/tables/｛shard｝/test_table_local/replicas/｛replica｝/host  
