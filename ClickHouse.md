@@ -44,8 +44,8 @@ order by (id,name);```
 
 在/etc/clickhouse-server/config.d/metrika.xml的配置中，通常会配置两个宏  
 ```<macros>  
-        <shard>02</shard>  
-        <replica>replica_208</replica>  
+  <shard>02</shard>  
+  <replica>replica_208</replica>  
 </macros> ```
 是在创建本地表时使用的，用来标注本节点表格代表的第几个分片的第几个副本。  
 副本的地址在zookeeper中可以看到，路径为  
