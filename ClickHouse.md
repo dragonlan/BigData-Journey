@@ -1,7 +1,7 @@
 <H2>一、ClickHouse的搭建</H2>
-Clickhouse的多集群搭建网上文章很多，我主要参考https://blog.csdn.net/qq_42873554/article/details/143368665搭建。但这文章里面也不完全对这里简述一下过程。  
-尚硅谷的课程文档：https://pan.baidu.com/s/1kQque0SxFTkYXs_xjjJafw#list/path=%2Fsharelink1102835136004-325135947614055%2F%E5%B0%9A%E7%A1%85%E8%B0%B7%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E4%B9%8BClickHouse%2F1.%E7%AC%94%E8%AE%B0&parentPath=%2Fsharelink1102835136004-325135947614055
-但这文章里面也不完全对这里简述一下过程。  
+Clickhouse的多集群搭建网上文章很多，我主要参考https://blog.csdn.net/qq_42873554/article/details/143368665搭建。但这文章里面也不完全对这里简述一下过程。    
+尚硅谷的课程文档：https://pan.baidu.com/s/1kQque0SxFTkYXs_xjjJafw#list/path=%2Fsharelink1102835136004-325135947614055%2F%E5%B0%9A%E7%A1%85%E8%B0%B7%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E4%B9%8BClickHouse%2F1.%E7%AC%94%E8%AE%B0&parentPath=%2Fsharelink1102835136004-325135947614055  
+但这文章里面也不完全对这里简述一下过程。    
 <H3>1、安装必要的环境工具和配置，包括JDK,防火墙、主机HOST</H3>  
 <H3>2、安装zookeeper</H3> 
   zookeeper只需要3个节点（方便容灾和选举），生产集群中建议占用独立3个节点，不要和ck集群混用。测试集群可以和ck节点混用。  
@@ -24,7 +24,8 @@ b、配置集群
 安装后，修改/etc/clickhouse/config.xml文件，通常集群放在/etc/clickhouse-server/config.d/metrika.xml中  
 c、创建本地表和分布式表，并插入数据  
   以创建分布式表语句为例  
-创建各机器的本地表：  
+创建各机器的本地表：
+
 ```
 CREATE TABLE default.test_table_local ON CLUSTER ck_cluster  
 (
