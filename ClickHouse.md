@@ -17,8 +17,8 @@ Clickhouse的多集群搭建网上文章很多，我主要参考https://blog.csd
   
 <H3>3、搭建clickhouse节点集群</H3>
 下载文件：https://packages.clickhouse.com/rpm/  
-需要4个文件：  
-a、clickhouse-client、clickhouse-server、clickhouse-common-static、clickhouse-common-static-dbg  
+需要4个文件：    <br>
+a、clickhouse-client、clickhouse-server、clickhouse-common-static、clickhouse-common-static-dbg  <br>
 四个文件找相同版本的。  
 b、配置集群  
 安装后，修改/etc/clickhouse/config.xml文件，通常集群放在/etc/clickhouse-server/config.d/metrika.xml中  
