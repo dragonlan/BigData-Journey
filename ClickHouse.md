@@ -76,11 +76,11 @@ log：分片下表的log，副本都是订阅该log，发现该log有变化时�
 
 
 <H2>三、ClickHouse遇到的问题</H2>
-1、host的问题
-网上搭建手册均没提到host问题。
-我在搭建时，直接用ip作为config.xml或者config.d/metria.xml中host节点，本以为配置了ip，访问都用ip，实际不是，造成的现象是副本数据不能同步。
-经过查询，有些文章说到是因为zookeeper是通过host通讯的，也就是/clickhouse/tables/｛shard｝/test_table_local/replicas/｛replica｝/host中的值是zookeeper自己采集的主机host
-所以ck的每个节点需要在/etc/hosts中配置其他副本的host信息，这样节点才能解析host得到对方ip地址，从而建连同步数据。
+1、host的问题  
+网上搭建手册均没提到host问题。  
+我在搭建时，直接用ip作为config.xml或者config.d/metria.xml中host节点，本以为配置了ip，访问都用ip，实际不是，造成的现象是副本数据不能同步。  
+经过查询，有些文章说到是因为zookeeper是通过host通讯的，也就是/clickhouse/tables/｛shard｝/test_table_local/replicas/｛replica｝/host中的值是zookeeper自己采集的主机host  
+所以ck的每个节点需要在/etc/hosts中配置其他副本的host信息，这样节点才能解析host得到对方ip地址，从而建连同步数据。  
 
-实际中，我们团队的同事用了另外一种解决办法，就是把每个节点的host改为其ip，也就是/etc/hostname 中存储ip，这样即使不配置/etc/hosts也能连接成功。
-我想是gethostbyname这个函数遇到ip形式的host直接返回了输入的ip吧，但是给文本host的时候，不配置/etc/hosts就无法解析到其他副本地址。
+实际中，我们团队的同事用了另外一种解决办法，就是把每个节点的host改为其ip，也就是/etc/hostname 中存储ip，这样即使不配置/etc/hosts也能连接成功。  
+我想是gethostbyname这个函数遇到ip形式的host直接返回了输入的ip吧，但是给文本host的时候，不配置/etc/hosts就无法解析到其他副本地址。  
